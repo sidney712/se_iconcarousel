@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>se_iconcarousel</name>
+    <displayName><![CDATA[Icon Carousel]]></displayName>
+    <version><![CDATA[1.0.0]]></version>
+    <description><![CDATA[Adds to your site a carousel for brand icons, thumbnails, etc.]]></description>
+    <author><![CDATA[sidney712]]></author>
+    <tab><![CDATA[slideshows]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+</module>
