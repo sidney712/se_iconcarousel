@@ -27,7 +27,7 @@
   <div class="iconcarousel-container d-none d-sm-block">
     <div id="iconcarousel" class="iconcarousel">
       {foreach from=$iconcarousel.slides item=slide}
-        <div class="nbs-flexisel-item"><img src="{$urls.img_url}brands/{$slide}"></div>
+        <div class="iconcarousel-item d-none"><img src="{$urls.base_url}{$iconcarousel.img_path}{$slide}"></div>
       {/foreach}
     </div>
   </div>

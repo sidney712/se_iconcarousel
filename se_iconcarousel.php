@@ -1,6 +1,6 @@
 <?php
 /**
-* 2007-2019 PrestaShop
+* Copyright 2019 Serhiy Sydorenko <serge.plwk@gmail.com>
 *
 * NOTICE OF LICENSE
 *
@@ -18,8 +18,8 @@
 * versions in the future. If you wish to customize PrestaShop for your
 * needs please refer to http://www.prestashop.com for more information.
 *
-*  @author    PrestaShop SA <contact@prestashop.com>
-*  @copyright 2007-2019 PrestaShop SA
+*  @author    Serhiy Sydorenko <serge.plwk@gmail.com>
+*  @copyright 2019 Serhiy Sydorenko
 *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -38,7 +38,7 @@ class Se_iconcarousel extends Module implements WidgetInterface
     {
         $this->name = 'se_iconcarousel';
         $this->tab = 'slideshows';
-        $this->version = '1.0.0';
+        $this->version = '1.1.0';
         $this->author = 'sidney712';
         $this->need_instance = 0;
 
@@ -50,7 +50,7 @@ class Se_iconcarousel extends Module implements WidgetInterface
         parent::__construct();
 
         $this->displayName = $this->l('Icon Carousel');
-        $this->description = $this->l('Adds to your site a carousel for brand icons, thumbnails, etc.');
+        $this->description = $this->l('Adds to your site a carousel with brand icons, thumbnails, etc.');
 
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
 
@@ -115,12 +115,8 @@ class Se_iconcarousel extends Module implements WidgetInterface
 
     public function getWidgetVariables($hookName = null, array $configuration = [])
     {
-        if (_THEME_DIR_ === "/themes/polarizen/") {
-            $carousel_dir_img = _PS_THEME_DIR_ . 'assets/img/brands';
-        } else {
-            $carousel_dir_img = _PS_MODULE_DIR_ . 'se_iconcarousel/views/img';
-        }
-
+        $carousel_dir_img = _PS_MODULE_DIR_ . 'se_iconcarousel/views/img';
+        $img_dir_path = 'modules/se_iconcarousel/views/img/';
         $entries = scandir($carousel_dir_img);
         $filelist = array();
 
@@ -130,13 +126,12 @@ class Se_iconcarousel extends Module implements WidgetInterface
             }
         }
 
-        shuffle($filelist);
-
         return [
             'iconcarousel' => [
                 'interval' => 5000,
                 'animation_speed' => 200,
                 'slides' => $filelist,
+                'img_path' => $img_dir_path,
             ],
         ];
     }

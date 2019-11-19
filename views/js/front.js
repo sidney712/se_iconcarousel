@@ -27,26 +27,28 @@
 */
 
 $(document).ready(function() {
-  $('#iconcarousel').addClass('js-iconcarousel').slick({
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 8000,
-    speed: 2000,
-    cssEase: 'ease-out',
-    arrows: false,
-    dots: false,
-    pauseOnHover: false,
-    responsive: [{
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 4
+  $('#iconcarousel').addClass('js-iconcarousel');
+
+  var arr = $('#iconcarousel').children();
+
+  function showItems() {
+    for (var i = 0; i < 6; i++) {
+      var num = Math.floor(Math.random() * arr.length);
+
+      if (!arr.eq(num).hasClass('show')) {
+        arr.eq(num).removeClass('d-none').addClass('show');
+      } else if (!!arr.eq(num).nextAll('.d-none').eq(0).length) {
+        arr.eq(num).nextAll('.d-none').eq(0).removeClass('d-none').addClass('show');
+      } else {
+        arr.eq(num).prevAll('.d-none').eq(0).removeClass('d-none').addClass('show');
       }
-    }, {
-      breakpoint: 520,
-      settings: {
-        slidesToShow: 3
-      }
-    }]
-  });
+    }
+  }
+
+  showItems();
+
+  setInterval(function() {
+    $('.iconcarousel-item').addClass('d-none').removeClass('show');
+    setTimeout(showItems, 100);
+  }, 5000);
 });
